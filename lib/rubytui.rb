@@ -17,7 +17,6 @@
 #    * Martin Chase <stillflame@freegeek.org>
 #
 
-
 # do some setup so we can be usably interactive.
 BEGIN {
     begin
