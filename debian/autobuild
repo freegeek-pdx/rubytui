@@ -1,0 +1,7 @@
+#!/bin/sh
+
+svn up
+svn log -v > ChangeLog
+rm -rvf ../libtui-ruby*
+debuild -I.svn -uc -us
+dput -u -f local ../libtui-ruby_*.changes
