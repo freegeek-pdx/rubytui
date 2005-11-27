@@ -1,4 +1,4 @@
  * get installation to not hardcode the version of ruby in the lib
    directory
 
- * get buildbot working please, dear god of the computers
+ * get buildbot working better
