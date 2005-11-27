@@ -1,5 +1,6 @@
 #!/bin/sh
 
+svn revert -R .
 svn up
 SVNVERSION=$(svnversion .)
 VERSION=$(head -n 1 debian/changelog | awk '{print $2}' | sed -e 's/.*(//' -e 's/\+.*//' -e 's/).*//')
