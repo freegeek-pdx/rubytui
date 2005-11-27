@@ -1,0 +1,1 @@
+ * get installation to not hardcode the version of ruby in the lib directory
