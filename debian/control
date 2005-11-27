@@ -1,14 +1,14 @@
 Source: libtui-ruby
 Priority: optional
 Maintainer: Martin Chase <stillflame@freegeek.org>
-Build-Depends-Indep: debhelper (>= 4.0.0), libruby, ruby
+Build-Depends-Indep: debhelper (>= 4.0.0), cdbs, libruby, ruby
 Standards-Version: 3.6.1
 Section: libs
 
 Package: libtui-ruby
 Section: libs
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}, libreadline-ruby
+Depends: ${shlibs:Depends}, ${misc:Depends}, libruby, ruby, libreadline-ruby
 Description: command-line interface helper utility for ruby
  a bunch of functions for dealing with basic command-line interface
  issues, like coloration and prompting.
