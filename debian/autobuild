@@ -1,7 +1,11 @@
 #!/bin/sh
 
 svn up
+SVNVERSION=$(svnversion .)
+VERSION=$(head -n 1 debian/changelog | awk '{print $2}' | sed -e 's/.*(//' -e 's/\+.*//' -e 's/).*//')
+SVNINFO=$(svn info)
 svn log -v > ChangeLog
-rm -rvf ../libtui-ruby*
+dch -v "$VERSION+svn+$SVNVERSION" "autobuild version change off of svn: $SVNINFO"
+rm -rvf ../libtui-ruby_*
 debuild -I.svn -uc -us
 dput -u -f local ../libtui-ruby_*.changes
