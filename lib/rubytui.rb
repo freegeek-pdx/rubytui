@@ -124,6 +124,18 @@ module RubyTUI
     end
     alias :writeLine :divider
 
+    ### Clear the screen.
+    def clear
+        `clear`
+    end
+
+    ### Provide a pause and prompt to continue.
+    def waitasec
+        divider(10)
+        prompt "press ENTER to continue..."
+        clear
+    end
+
     ### Output the specified <tt>msg</tt> colored in ANSI red and exit with a
     ### status of 1.
     def abort( msg )
