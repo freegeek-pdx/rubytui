@@ -126,7 +126,7 @@ module RubyTUI
 
     ### Clear the screen.
     def clear
-        $stderr.puts `clear`
+        $stderr.write `clear`
         $stderr.flush
     end
 
