@@ -1,3 +1,9 @@
+libtui-ruby (1.0) unstable; urgency=low
+
+  * First real release.
+
+ -- Martin Chase <stillflame@freegeek.org>  Sun,  4 Dec 2005 19:22:19 -0800
+
 libtui-ruby (0.0.1) unstable; urgency=low
 
   * Initial Release.
