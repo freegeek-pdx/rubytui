@@ -84,30 +84,52 @@ module RubyTUI
 
     ### Output <tt>msg</tt> as a ANSI-colored program/section header (white on
     ### blue).
+    HeaderColor = [ 'bold', 'white', 'on_blue' ]
     def header( msg )
         msg.chomp!
-        $stderr.puts ansiCode( 'bold', 'white', 'on_blue' ) + msg + ansiCode( 'reset' )
+        $stderr.puts ansiCode( *HeaderColor ) + msg + ansiCode( 'reset' )
+        $stderr.flush
+    end
+
+    ### Output <tt>msg</tt> as a ANSI-colored highlighted text.
+    HighlightColor = [ 'red', 'bold' ]
+    def highlight( msg )
+        $stderr.print ansiCode( *HighlightColor ) + msg + ansiCode( 'reset' )
         $stderr.flush
     end
 
     ### Output <tt>msg</tt> to STDERR and flush it.
+    MessageColor = [ 'cyan' ]
     def message( msg )
-        $stderr.print ansiCode( 'cyan' ) + msg + ansiCode( 'reset' )
+        $stderr.print ansiCode( *MessageColor ) + msg + ansiCode( 'reset' )
         $stderr.flush
+    end
+
+    ### Put a newline on the end of a message call.
+    def echo( string )
+        message string.chomp + "\n"
     end
 
     ### Output the specified <tt>msg</tt> as an ANSI-colored error message
     ### (white on red).
+    ErrorColor = [ 'bold', 'white', 'on_red' ]
     def errorMessage( msg )
-        message ansiCode( 'bold', 'white', 'on_red' ) + msg + ansiCode( 'reset' )
+        message ansiCode( *ErrorColor ) + msg + ansiCode( 'reset' )
     end
 
     ### Output the specified <tt>msg</tt> as an ANSI-colored debugging message
     ### (yellow on blue).
+    DebugColor = [ 'bold', 'yellow', 'on_blue' ]
     def debugMsg( msg )
         return unless $DEBUG
         msg.chomp!
-        $stderr.puts ansiCode( 'bold', 'yellow', 'on_blue' ) + ">>> #{msg}" + ansiCode( 'reset' )
+        $stderr.puts ansiCode( *DebugColor ) + ">>> #{msg}" + ansiCode( 'reset' )
+        $stderr.flush
+    end
+
+    ### Output the specified <tt>msg</tt> without any colors
+    def display( msg )
+        $stderr.print msg
         $stderr.flush
     end
 
@@ -120,7 +142,8 @@ module RubyTUI
 
     ### Output a divider made up of <tt>length</tt> hyphen characters.
     def divider( length=75 )
-        puts "\r" + ("-" * length )
+        $stderr.puts( "-" * length )
+        $stderr.flush
     end
     alias :writeLine :divider
 
@@ -132,9 +155,15 @@ module RubyTUI
 
     ### Provide a pause and prompt to continue.
     def waitasec
+        display "\n"
         divider(10)
-        prompt "press ENTER to continue..."
+        pausePrompt
         clear
+    end
+
+    ### Wait for input.
+    def pausePrompt
+        prompt "press ENTER to continue..."
     end
 
     ### Output the specified <tt>msg</tt> colored in ANSI red and exit with a
@@ -168,7 +197,7 @@ module RubyTUI
         response = prompt( "%s [%s]" % [ promptString, default ] )
         response = default if response.empty?
         until test.call(response)
-            errorMessage(faiure_msg)
+            errorMessage(failure_msg)
             message("\n")
             response = promptWithDefault( promptString, default )
         end if test
