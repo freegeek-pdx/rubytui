@@ -204,7 +204,7 @@ module RubyTUI
         return response
     end
 
-    # Yes/No prompt with default of No.
+    ### Yes/No prompt with default of No.
     def yesNo( promptString )
         answer = promptWithDefault( promptString, "no",
             "Please enter 'yes' or 'no'" ) {|response|
@@ -213,7 +213,7 @@ module RubyTUI
         return answer.match( '^[Yy]' )
     end
 
-    # Yes/No prompt with default of Yes.
+    ### Yes/No prompt with default of Yes.
     def noYes( promptString )
         answer = promptWithDefault( promptString, "yes",
             "Please enter 'yes' or 'no'" ) {|response|
@@ -221,6 +221,40 @@ module RubyTUI
         }
         return answer.match( '^[Yy]' )
     end
+
+    ### Display a menu of numeric choices for the <tt>m_items</tt> passed in,
+    ### with a title of <tt>head</tt> and a prompt of <tt>ques</tt>.
+    def menu( head, ques, *m_items )
+        choice = _displayMenu( head, ques, *m_items )
+        until (1..(m_items.length)).include?( choice )
+            errorMessage "\nPlease enter a number between 1 and #{m_items.length}\n\n"
+            choice = _displayMenu( head, ques, *m_items )
+        end
+        return m_items[choice - 1]
+    end
+
+    ### Display a menu of numeric choices for the <tt>m_items</tt> passed in,
+    ### with a title of <tt>head</tt>, a prompt of <tt>ques</tt> and a default
+    ### value of <tt>default</tt>.
+    def menuWithDefault( head, ques, default, *m_items )
+        choice = _displayMenu( head, ques + " [#{default}]", *m_items )
+        if (1..(m_items.length)).include?( choice )
+            return m_items[choice - 1]
+        else
+            return default
+        end
+    end
+
+    def _displayMenu( head, ques, *m_items )
+        header head
+        m_items.each_with_index {|item, i|
+            highlight "\t%d" % (i+1).to_s
+            display ": %s\n" % item
+        }
+        choice = prompt( ques ).to_i
+        return choice
+    end
+    private :_displayMenu
 
 end # module RubyTUI
 
