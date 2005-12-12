@@ -30,8 +30,13 @@ BEGIN {
         end
     end
 }
+require 'timeout'
 
+# Set this to true for ANSI coloration.
 $COLOR = true
+
+# Set this to an integer to wrap user input in a timeout.
+$TIMEOUT = false
 
 module RubyTUI
 
@@ -179,8 +184,20 @@ module RubyTUI
     ### An optional failure message can also be passed in.
     def prompt( promptString, failure_msg="Try again.", &test )
         promptString.chomp!
-        response = readline( ansiCode('bold', 'green') +
-            "#{promptString}: " + ansiCode('reset') ).strip
+        response = ""
+        if $TIMEOUT
+            begin
+                Timeout::timeout($TIMEOUT) {
+                    response = readline( ansiCode('bold', 'green') +
+                        "#{promptString}: " + ansiCode('reset') ).strip
+                }
+            rescue Timeout::Error
+                errorMessage "\nTimed out!\n"
+            end
+        else
+            response = readline( ansiCode('bold', 'green') +
+                "#{promptString}: " + ansiCode('reset') ).strip
+        end
         until test.call(response)
             errorMessage(failure_msg)
             message("\n")
@@ -226,7 +243,7 @@ module RubyTUI
     ### with a title of <tt>head</tt> and a prompt of <tt>ques</tt>.
     def menu( head, ques, *m_items )
         choice = _displayMenu( head, ques, *m_items )
-        until (1..(m_items.length)).include?( choice )
+        until choice and (1..(m_items.length)).include?( choice )
             errorMessage "\nPlease enter a number between 1 and #{m_items.length}\n\n"
             choice = _displayMenu( head, ques, *m_items )
         end
@@ -238,11 +255,13 @@ module RubyTUI
     ### value of <tt>default</tt>.
     def menuWithDefault( head, ques, default, *m_items )
         choice = _displayMenu( head, ques + " [#{default}]", *m_items )
-        if (1..(m_items.length)).include?( choice )
-            return m_items[choice - 1]
-        else
-            return default
+        return default unless choice
+        until (1..(m_items.length)).include?( choice )
+            errorMessage "\nPlease enter a number between 1 and #{m_items.length}\n\n"
+            choice = _displayMenu( head, ques + " [#{default}]", *m_items )
+            return default unless choice
         end
+        return m_items[choice - 1]
     end
 
     def _displayMenu( head, ques, *m_items )
@@ -251,8 +270,8 @@ module RubyTUI
             highlight "\t%d" % (i+1).to_s
             display ": %s\n" % item
         }
-        choice = prompt( ques ).to_i
-        return choice
+        choice = prompt( ques )
+        return choice.empty? ? nil : choice.to_i
     end
     private :_displayMenu
 
