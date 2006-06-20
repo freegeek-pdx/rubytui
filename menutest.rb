@@ -1,9 +1,9 @@
 #!/usr/bin/ruby -wd
 
 require 'lib/rubytui'
+include RubyTUI
 
-
-$TIMEOUT = 2
+$TIMEOUT = 4
 
 
 choice = menu( "Please choose a foo:", "Which foo?",

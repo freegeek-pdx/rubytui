@@ -1,6 +1,7 @@
 #!/usr/bin/ruby -w
 
 require 'lib/rubytui'
+include RubyTUI
 
 colors = AnsiAttributes.find_all {|name,val|
     val >= 30 and val <= 37
