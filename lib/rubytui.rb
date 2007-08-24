@@ -179,24 +179,28 @@ module RubyTUI
     end
 
     ### Output the specified <tt>promptString</tt> as a prompt (in green) and
-    ### return the user's input with leading and trailing spaces removed.  If a
-    ### test is provided, the prompt will repeat until the test returns true.
-    ### An optional failure message can also be passed in.
+    ### return the user's input with leading and trailing spaces removed.
+    def promptResponse(promptString)
+        return readline( ansiCode('bold', 'green') +
+            "#{promptString}: " + ansiCode('reset') ).strip
+    end
+
+    ### Output the specified <tt>promptString</tt> as a prompt and return the
+    ### user's input. If a test is provided, the prompt will repeat until the 
+    ### test returns true.  An optional failure message can also be passed in.
     def prompt( promptString, failure_msg="Try again.", &test )
         promptString.chomp!
         response = ""
         if $TIMEOUT
             begin
                 Timeout::timeout($TIMEOUT) {
-                    response = readline( ansiCode('bold', 'green') +
-                        "#{promptString}: " + ansiCode('reset') ).strip
+                    response = promptResponse(promptString) 
                 }
             rescue Timeout::Error
                 errorMessage "\nTimed out!\n"
             end
         else
-            response = readline( ansiCode('bold', 'green') +
-                "#{promptString}: " + ansiCode('reset') ).strip
+            response = promptResponse(promptString) 
         end
         until test.call(response)
             errorMessage(failure_msg)
