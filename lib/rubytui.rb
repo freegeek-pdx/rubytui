@@ -72,7 +72,7 @@ module RubyTUI
     # Create a string that contains the ANSI codes specified and return it
     def ansiCode( *attributes )
         return '' unless $COLOR
-        return '' unless /(?:vt10[03]|screen|[aex]term(?:-color)?|linux)/i =~ ENV['TERM']
+        return '' unless /(?:vt10[03]|screen|[aex]term(?:-color)?|linux|rxvt(?:-unicode))/i =~ ENV['TERM']
         attr = attributes.collect {|a| AnsiAttributes[a] ? AnsiAttributes[a] : nil}.compact.join(';')
         if attr.empty? 
             return ''
