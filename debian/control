@@ -1,6 +1,7 @@
 Source: libtui-ruby
 Priority: optional
-Maintainer: Martin Chase <stillflame@freegeek.org>
+Maintainer: Freegeek Coders <coders@freegeek.org>
+Uploaders: Martin Chase <stillflame@freegeek.org>, Vagrant Cascadian <vagrant@freegeek.org>, Ryan Niebur <ryanryan52@gmail.com>
 Build-Depends-Indep: debhelper (>= 4.0.0), cdbs
 Standards-Version: 3.6.1
 Section: libs
