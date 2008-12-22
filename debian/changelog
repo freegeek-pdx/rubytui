@@ -2,7 +2,7 @@ libtui-ruby (1.4) UNRELEASED; urgency=low
 
   * support rxvt
   * change around Maintainer and Uploaders
-  * move the orderedMenu stuff from printme to here, and clean it up
+  * move the numberedMenu stuff from printme to here, and clean it up
 
  -- Ryan Niebur <ryanryan52@gmail.com>  Sun, 21 Dec 2008 16:30:28 -0800
 

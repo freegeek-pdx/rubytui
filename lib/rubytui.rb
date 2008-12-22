@@ -258,15 +258,15 @@ module RubyTUI
     ### passed in, with a title of <tt>head</tt> and a prompt of
     ### <tt>ques</tt>. Unlike <tt>menu</tt>, this respects the index
     ### of the <tt>m_items</tt> array.
-    def orderedMenu( head, ques, m_items )
-      choice = _displayOrderedMenu( head, ques, m_items )
+    def numberedMenu( head, ques, m_items )
+      choice = _displayNumberedMenu( head, ques, m_items )
       valid_choices = []
       m_items.each_with_index{|x,i|
         valid_choices << i if !x.nil?
       }
       until valid_choices.include?( choice )
         errorMessage "\nPlease enter a valid choice\n\n"
-        choice = _displayOrderedMenu( head, ques, m_items )
+        choice = _displayNumberedMenu( head, ques, m_items )
       end
       return m_items[choice]
     end
@@ -294,11 +294,11 @@ module RubyTUI
     ### <tt>ques</tt> and a default value of <tt>default</tt>. Unlike
     ### <tt>menuWithDefault</tt>, this respects the index of the
     ### <tt>m_items</tt> array.
-    def orderedMenuWithDefault( head, ques, default, m_items )
+    def numberedMenuWithDefault( head, ques, default, m_items )
       if (m_items - [default, nil]).length == 0
         return default
       end
-      choice = _displayOrderedMenu( head, ques + " [#{default}]", m_items )
+      choice = _displayNumberedMenu( head, ques + " [#{default}]", m_items )
       return default unless choice
       valid_choices = []
       m_items.each_with_index{|x,i|
@@ -306,13 +306,13 @@ module RubyTUI
       }
       until valid_choices.include?( choice )
         errorMessage "\nPlease enter a valid choice\n\n"
-        choice = _displayOrderedMenu( head, ques + " [#{default}]", m_items )
+        choice = _displayNumberedMenu( head, ques + " [#{default}]", m_items )
         return default unless choice
       end
       return m_items[choice]
     end
 
-    def _displayOrderedMenu( head, ques, m_items )
+    def _displayNumberedMenu( head, ques, m_items )
       header head
       m_items.each_with_index {|item, i|
         if !item.nil?
