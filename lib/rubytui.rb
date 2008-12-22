@@ -254,6 +254,23 @@ module RubyTUI
         return m_items[choice - 1]
     end
 
+    ### Display a menu of numeric choices for the <tt>m_items</tt>
+    ### passed in, with a title of <tt>head</tt> and a prompt of
+    ### <tt>ques</tt>. Unlike <tt>menu</tt>, this respects the index
+    ### of the <tt>m_items</tt> array.
+    def orderedMenu( head, ques, m_items )
+      choice = _displayOrderedMenu( head, ques, m_items )
+      valid_choices = []
+      m_items.each_with_index{|x,i|
+        valid_choices << i if !x.nil?
+      }
+      until valid_choices.include?( choice )
+        errorMessage "\nPlease enter a valid choice\n\n"
+        choice = _displayOrderedMenu( head, ques, m_items )
+      end
+      return m_items[choice]
+    end
+
     ### Display a menu of numeric choices for the <tt>m_items</tt> passed in,
     ### with a title of <tt>head</tt>, a prompt of <tt>ques</tt> and a default
     ### value of <tt>default</tt>.
@@ -276,26 +293,21 @@ module RubyTUI
     ### passed in, with a title of <tt>head</tt>, a prompt of
     ### <tt>ques</tt> and a default value of <tt>default</tt>. Unlike
     ### <tt>menuWithDefault</tt>, this respects the index of the
-    ### <tt>m_items</tt> array. It also has a <tt>is_evil</tt> option
-    ### that, when set, requires the user to enter a choice despite
-    ### there being a default shown. The is_evil option will be
-    ### removed in later versions once an orderedMenu is implemented,
-    ### so don't use it.
-    def orderedMenuWithDefault( head, ques, default, m_items, is_evil = false )
-      # TODO: implement a orderedMenu so that the is_evil option is no longer needed.
+    ### <tt>m_items</tt> array.
+    def orderedMenuWithDefault( head, ques, default, m_items )
       if (m_items - [default, nil]).length == 0
         return default
       end
       choice = _displayOrderedMenu( head, ques + " [#{default}]", m_items )
-      return default unless choice or is_evil
+      return default unless choice
       valid_choices = []
       m_items.each_with_index{|x,i|
         valid_choices << i if !x.nil?
       }
       until valid_choices.include?( choice )
         errorMessage "\nPlease enter a valid choice\n\n"
-        choice = displayOrderedMenu( head, ques + " [#{default}]", m_items )
-        return default unless choice or is_evil
+        choice = _displayOrderedMenu( head, ques + " [#{default}]", m_items )
+        return default unless choice
       end
       return m_items[choice]
     end
