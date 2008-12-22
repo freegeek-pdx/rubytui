@@ -258,6 +258,9 @@ module RubyTUI
     ### with a title of <tt>head</tt>, a prompt of <tt>ques</tt> and a default
     ### value of <tt>default</tt>.
     def menuWithDefault( head, ques, default, *m_items )
+        if (m_items - [default, nil]).length == 0
+          return default
+        end
         choice = _displayMenu( head, ques + " [#{default}]", *m_items )
         return default unless choice
         until (1..(m_items.length)).include?( choice )
@@ -283,7 +286,7 @@ module RubyTUI
       if (m_items - [default, nil]).length == 0
         return default
       end
-      choice = my__displayMenu( head, ques + " [#{default}]", m_items )
+      choice = _displayOrderedMenu( head, ques + " [#{default}]", m_items )
       return default unless choice or is_evil
       valid_choices = []
       m_items.each_with_index{|x,i|
@@ -291,7 +294,7 @@ module RubyTUI
       }
       until valid_choices.include?( choice )
         errorMessage "\nPlease enter a valid choice\n\n"
-        choice = my__displayMenu( head, ques + " [#{default}]", m_items )
+        choice = displayOrderedMenu( head, ques + " [#{default}]", m_items )
         return default unless choice or is_evil
       end
       return m_items[choice]
