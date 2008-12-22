@@ -1,3 +1,9 @@
+libtui-ruby (1.5) public; urgency=low
+
+  * rebuild
+
+ -- Ryan Niebur <ryanryan52@gmail.com>  Mon, 22 Dec 2008 00:28:37 -0800
+
 libtui-ruby (1.4) unstable; urgency=low
 
   * support rxvt
