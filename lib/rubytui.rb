@@ -1,4 +1,4 @@
-#!/usr/bin/ruby -w
+# -*- Ruby -*-
 #
 # Copyright (c) 2005, Free Geek.
 #
