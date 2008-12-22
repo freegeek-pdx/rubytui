@@ -246,6 +246,7 @@ module RubyTUI
     ### Display a menu of numeric choices for the <tt>m_items</tt> passed in,
     ### with a title of <tt>head</tt> and a prompt of <tt>ques</tt>.
     def menu( head, ques, *m_items )
+        return m_items[0] if m_items.length == 1
         choice = _displayMenu( head, ques, *m_items )
         until choice and (1..(m_items.length)).include?( choice )
             errorMessage "\nPlease enter a number between 1 and #{m_items.length}\n\n"
@@ -259,11 +260,12 @@ module RubyTUI
     ### <tt>ques</tt>. Unlike <tt>menu</tt>, this respects the index
     ### of the <tt>m_items</tt> array.
     def numberedMenu( head, ques, m_items )
-      choice = _displayNumberedMenu( head, ques, m_items )
       valid_choices = []
       m_items.each_with_index{|x,i|
         valid_choices << i if !x.nil?
       }
+      return m_items[valid_choices[0]] if valid_choices.length == 1
+      choice = _displayNumberedMenu( head, ques, m_items )
       until valid_choices.include?( choice )
         errorMessage "\nPlease enter a valid choice\n\n"
         choice = _displayNumberedMenu( head, ques, m_items )
