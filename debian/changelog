@@ -1,3 +1,9 @@
+libtui-ruby (1.7) public; urgency=low
+
+  * again
+
+ -- Ryan Niebur <ryanryan52@gmail.com>  Tue, 23 Dec 2008 14:09:23 -0800
+
 libtui-ruby (1.6) public; urgency=low
 
   * fix installation
