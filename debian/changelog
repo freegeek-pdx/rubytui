@@ -1,9 +1,10 @@
-libtui-ruby (1.8) UNRELEASED; urgency=low
+libtui-ruby (1.8) freegeek-test; urgency=low
 
+  [ Vagrant Cascadian ]
   * set Section to public/libs in debian/control to properly register
     that it should be in the "public" component in the apt repository.
 
- -- Vagrant Cascadian <vagrant@freegeek.org>  Thu, 27 Aug 2009 13:03:47 -0700
+ -- Ryan Niebur <ryanryan52@gmail.com>  Sat, 29 Aug 2009 17:07:58 -0700
 
 libtui-ruby (1.7) public; urgency=low
 
