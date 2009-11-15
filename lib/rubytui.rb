@@ -243,6 +243,13 @@ module RubyTUI
         return answer.match( '^[Yy]' )
     end
 
+    def yes_or_no(promptString)
+      answer = prompt( promptString, "Please enter 'yes' or 'no'" ) {|response|
+        response.match( '^[YyNn]' )
+      }
+      return answer.match( '^[Yy]' )
+    end
+
     ### Display a menu of numeric choices for the <tt>m_items</tt> passed in,
     ### with a title of <tt>head</tt> and a prompt of <tt>ques</tt>.
     def menu( head, ques, *m_items )
