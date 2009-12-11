@@ -1,3 +1,9 @@
+libtui-ruby (1.9) freegeek-test; urgency=low
+
+  * have the prompt colors set in a constant
+
+ -- Martin Chase <mchase@freegeek.org>  Thu, 10 Dec 2009 16:20:23 -0800
+
 libtui-ruby (1.8) freegeek-test; urgency=low
 
   [ Vagrant Cascadian ]
