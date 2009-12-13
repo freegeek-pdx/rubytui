@@ -27,7 +27,7 @@ Description: command-line interface helper utility for ruby (documentation)
 Package: libtui-ruby
 Section: libs
 Architecture: all
-Depends: ${misc:Depends}, libtui-ruby1.8
+Depends: ${misc:Depends}, libtui-ruby1.8 (= ${binary:Version})
 Suggests: libtui-ruby-doc
 Description: command-line interface helper utility for ruby (metapackage)
  a bunch of functions for dealing with basic command-line interface

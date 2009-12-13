@@ -1,3 +1,10 @@
+libtui-ruby (1.10) freegeek-test; urgency=low
+
+  * have libtui-ruby depend on the same version of libtui-ruby1.8 as
+    itself.
+
+ -- Martin Chase <mchase@freegeek.org>  Sun, 13 Dec 2009 12:05:59 -0800
+
 libtui-ruby (1.9) freegeek-test; urgency=low
 
   * have the prompt colors set in a constant
