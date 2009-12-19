@@ -1,9 +1,22 @@
-libtui-ruby (1.9) UNRELEASED; urgency=low
+libtui-ruby (1.11) UNRELEASED; urgency=low
 
   * add a new function: yes_or_no, like yesNo and noYes, but without a
     default..
 
  -- Ryan Niebur <ryan@debian.org>  Sat, 14 Nov 2009 17:24:56 -0800
+
+libtui-ruby (1.10) freegeek-test; urgency=low
+
+  * have libtui-ruby depend on the same version of libtui-ruby1.8 as
+    itself.
+
+ -- Martin Chase <mchase@freegeek.org>  Sun, 13 Dec 2009 12:05:59 -0800
+
+libtui-ruby (1.9) freegeek-test; urgency=low
+
+  * have the prompt colors set in a constant
+
+ -- Martin Chase <mchase@freegeek.org>  Thu, 10 Dec 2009 16:20:23 -0800
 
 libtui-ruby (1.8) freegeek-test; urgency=low
 

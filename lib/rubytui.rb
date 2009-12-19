@@ -180,8 +180,9 @@ module RubyTUI
 
     ### Output the specified <tt>promptString</tt> as a prompt (in green) and
     ### return the user's input with leading and trailing spaces removed.
+    PromptColor = ['bold', 'green']
     def promptResponse(promptString)
-        return readline( ansiCode('bold', 'green') +
+        return readline( ansiCode(*PromptColor) +
             "#{promptString}: " + ansiCode('reset') ).strip
     end
 
