@@ -228,26 +228,26 @@ module RubyTUI
 
     ### Yes/No prompt with default of No.
     def yesNo( promptString )
-        answer = promptWithDefault( promptString, "no",
-            "Please enter 'yes' or 'no'" ) {|response|
-            response.match( '^[YyNn]' )
-        }
-        return answer.match( '^[Yy]' )
+      yes_or_no(promptString, false)
     end
 
     ### Yes/No prompt with default of Yes.
     def noYes( promptString )
-        answer = promptWithDefault( promptString, "yes",
+      yes_or_no(promptString, true)
+    end
+
+    def yes_or_no(promptString, default = nil)
+      answer = ""
+      if !default.nil?
+        answer = promptWithDefault( promptString, default ? "yes" : "no",
             "Please enter 'yes' or 'no'" ) {|response|
             response.match( '^[YyNn]' )
         }
-        return answer.match( '^[Yy]' )
-    end
-
-    def yes_or_no(promptString)
-      answer = prompt( promptString, "Please enter 'yes' or 'no'" ) {|response|
-        response.match( '^[YyNn]' )
-      }
+      else
+        answer = prompt( promptString, "Please enter 'yes' or 'no'" ) {|response|
+          response.match( '^[YyNn]' )
+        }
+      end
       return answer.match( '^[Yy]' )
     end
 
