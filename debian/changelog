@@ -1,9 +1,9 @@
-libtui-ruby (1.11) UNRELEASED; urgency=low
+libtui-ruby (1.11) freegeek-test; urgency=low
 
   * add a new function: yes_or_no, like yesNo and noYes, but without a
     default..
 
- -- Ryan Niebur <ryan@debian.org>  Sat, 14 Nov 2009 17:24:56 -0800
+ -- Ryan Niebur <ryan@debian.org>  Sat, 20 Feb 2010 11:50:19 -0800
 
 libtui-ruby (1.10) freegeek-test; urgency=low
 
