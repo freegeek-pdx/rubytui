@@ -18,18 +18,8 @@
 #
 
 # do some setup so we can be usably interactive.
-BEGIN {
-    begin
-        require 'readline'
-        include Readline
-    rescue LoadError => e
-        $stderr.puts "Faking readline..."
-        def readline( prompt )
-            $stderr.print prompt.chomp
-            return $stdin.gets.chomp
-        end
-    end
-}
+require 'readline'
+include Readline
 require 'timeout'
 
 # Set this to true for ANSI coloration.
@@ -77,7 +67,7 @@ module RubyTUI
         if attr.empty? 
             return ''
         else
-            return "\e[%sm" % attr
+            return "\001\033[%sm\002" % attr
         end
     end
 
