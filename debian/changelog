@@ -1,8 +1,8 @@
-libtui-ruby (1.14) UNRELEASED; urgency=low
+libtui-ruby (1.14) freegeek-test; urgency=low
 
   * depend on lsb-release
 
- -- Ryan Niebur <ryan@debian.org>  Tue, 10 Aug 2010 16:10:44 -0700
+ -- Ryan Niebur <ryan@debian.org>  Tue, 10 Aug 2010 16:11:09 -0700
 
 libtui-ruby (1.13) freegeek-test; urgency=low
 
