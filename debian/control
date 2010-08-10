@@ -11,7 +11,7 @@ Section: libs
 Architecture: all
 Replaces: libtui-ruby
 Conflicts: libtui-ruby (<= 1.3)
-Depends: ${misc:Depends}, libruby1.8, ruby1.8, libreadline-ruby1.8
+Depends: ${misc:Depends}, libruby1.8, ruby1.8, libreadline-ruby1.8, lsb-release
 Description: command-line interface helper utility for ruby
  a bunch of functions for dealing with basic command-line interface
  issues, like coloration and prompting.

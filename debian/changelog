@@ -1,3 +1,9 @@
+libtui-ruby (1.14) UNRELEASED; urgency=low
+
+  * depend on lsb-release
+
+ -- Ryan Niebur <ryan@debian.org>  Tue, 10 Aug 2010 16:10:44 -0700
+
 libtui-ruby (1.13) freegeek-test; urgency=low
 
   * fix weird characters showing up in lucid (Closes: #19153)
