@@ -67,7 +67,11 @@ module RubyTUI
         if attr.empty? 
             return ''
         else
-            return "\001\033[%sm\002" % attr
+          str = "\001\033[%sm\002"
+          if `lsb_release -cs`.chomp == "lucid"
+            str = "\e[%sm"
+          end
+          return str % attr
         end
     end
 

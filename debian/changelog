@@ -1,3 +1,9 @@
+libtui-ruby (1.13) UNRELEASED; urgency=low
+
+  * fix weird characters showing up in lucid (Closes: #19153)
+
+ -- Ryan Niebur <ryan@debian.org>  Tue, 10 Aug 2010 15:52:16 -0700
+
 libtui-ruby (1.12) freegeek-test; urgency=low
 
   * output special characters to tell readline to ignore the escape
