@@ -1,3 +1,9 @@
+libtui-ruby (1.15) UNRELEASED; urgency=low
+
+  * cache the distribution so that it's not super slow
+
+ -- Ryan Niebur <ryan@debian.org>  Tue, 10 Aug 2010 17:54:02 -0700
+
 libtui-ruby (1.14) freegeek-test; urgency=low
 
   * depend on lsb-release

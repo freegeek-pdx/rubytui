@@ -59,6 +59,8 @@ module RubyTUI
     module_function
     ###############
 
+    DIST=`lsb_release -cs`.chomp
+
     # Create a string that contains the ANSI codes specified and return it
     def ansiCode( *attributes )
         return '' unless $COLOR
@@ -68,7 +70,7 @@ module RubyTUI
             return ''
         else
           str = "\001\033[%sm\002"
-          if `lsb_release -cs`.chomp == "lucid"
+          if DIST == "lucid"
             str = "\e[%sm"
           end
           return str % attr
