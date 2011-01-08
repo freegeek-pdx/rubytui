@@ -1,8 +1,9 @@
 libtui-ruby (1.15) UNRELEASED; urgency=low
 
   * cache the distribution so that it's not super slow
+  * add support for detecting macs and faking readline (again)
 
- -- Ryan Niebur <ryan@debian.org>  Tue, 10 Aug 2010 17:54:02 -0700
+ -- Ryan Niebur <ryan@debian.org>  Sat, 08 Jan 2011 12:32:58 -0800
 
 libtui-ruby (1.14) freegeek-test; urgency=low
 

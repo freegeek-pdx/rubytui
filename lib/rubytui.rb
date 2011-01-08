@@ -18,8 +18,16 @@
 #
 
 # do some setup so we can be usably interactive.
+begin
 require 'readline'
 include Readline
+rescue LoadError
+#puts "faking readline.."
+def readline(prompt)
+$stderr.print prompt.chomp
+return $stdin.gets.chomp
+end
+end
 require 'timeout'
 
 # Set this to true for ANSI coloration.
@@ -59,7 +67,7 @@ module RubyTUI
     module_function
     ###############
 
-    DIST=`lsb_release -cs`.chomp
+    DIST=(`uname`.strip == "Darwin" ? "mac" : `lsb_release -cs`.chomp)
 
     # Create a string that contains the ANSI codes specified and return it
     def ansiCode( *attributes )
