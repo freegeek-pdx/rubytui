@@ -67,7 +67,8 @@ module RubyTUI
     module_function
     ###############
 
-    DIST=(`uname`.strip == "Darwin" ? "mac" : `lsb_release -cs`.chomp)
+#    DIST=(`uname`.strip == "Darwin" ? "mac" : `lsb_release -cs`.chomp)
+    DIST=(`uname`.strip == "Darwin" ? "mac" : "unix")
 
     # Create a string that contains the ANSI codes specified and return it
     def ansiCode( *attributes )
@@ -77,9 +78,10 @@ module RubyTUI
         if attr.empty? 
             return ''
         else
-          str = "\001\033[%sm\002"
-          if DIST == "lucid"
+          if DIST != "mac"
             str = "\e[%sm"
+          else
+            str = "\001\033[%sm\002"
           end
           return str % attr
         end

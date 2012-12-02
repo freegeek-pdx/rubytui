@@ -1,9 +1,13 @@
 libtui-ruby (1.15) UNRELEASED; urgency=low
 
+Problem: now words don't wrap to the next line, can we just let the terminal handle it?
+
   * cache the distribution so that it's not super slow
   * add support for detecting macs and faking readline (again)
+  * fix printme to not output invalid characters on 12.04 (Closes:
+    #32291)
 
- -- Ryan Niebur <ryan@debian.org>  Sat, 08 Jan 2011 12:32:58 -0800
+ -- Ryan Niebur <ryan@debian.org>  Sat, 01 Dec 2012 16:03:12 -0800
 
 libtui-ruby (1.14) freegeek-test; urgency=low
 
