@@ -5,6 +5,8 @@ libtui-ruby (1.15) freegeek-test; urgency=low
   * fix printme to not output invalid characters on 12.04 (Closes:
     #32291)
   * fix for newer versions of ruby packaging support
+  * Rename packages to ruby-tui and ruby-tui-doc, also adding
+    transitional packages
 
  -- Ryan Niebur <ryan@debian.org>  Sat, 08 Dec 2012 13:05:16 -0800
 
