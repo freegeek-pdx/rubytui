@@ -1,12 +1,17 @@
-libtui-ruby (1.15) freegeek-test; urgency=low
+libtui-ruby (1.16) freegeek-test; urgency=low
 
-  * cache the distribution so that it's not super slow
   * add support for detecting macs and faking readline (again)
   * fix printme to not output invalid characters on 12.04 (Closes:
     #32291)
   * add build dep on graphviz for building the rdoc
 
- -- Ryan Niebur <ryan@debian.org>  Sat, 08 Dec 2012 13:05:16 -0800
+  -- Ryan Niebur <ryan@debian.org>  Sat, 08 Dec 2012 13:05:16 -0800
+
+libtui-ruby (1.15) freegeek-test; urgency=low
+
+  * cache the distribution so that it's not super slow
+
+ -- Ryan Niebur <ryan@debian.org>  Tue, 10 Aug 2010 17:54:10 -0700
 
 libtui-ruby (1.14) freegeek-test; urgency=low
 
