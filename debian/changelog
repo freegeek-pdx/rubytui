@@ -5,7 +5,7 @@ libtui-ruby (1.16) freegeek-test; urgency=low
     #32291)
   * add build dep on graphviz for building the rdoc
 
-  -- Ryan Niebur <ryan@debian.org>  Sat, 08 Dec 2012 13:05:16 -0800
+ -- Ryan Niebur <ryan@debian.org>  Sat, 08 Dec 2012 13:05:16 -0800
 
 libtui-ruby (1.15) freegeek-test; urgency=low
 
