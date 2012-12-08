@@ -1,6 +1,8 @@
 #!/usr/bin/make -f
 
-%:
-	dh $@ --buildsystem=ruby --with ruby
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/ruby-pkg-tools/1/class/ruby-common.mk
+include /usr/share/ruby-pkg-tools/1/class/ruby-setup-rb.mk
 
+DEB_RUBY_SIMPLE_PACKAGES=libtui-ruby
 

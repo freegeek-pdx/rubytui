@@ -2,10 +2,9 @@ Source: libtui-ruby
 Priority: optional
 Maintainer: Freegeek Coders <coders@freegeek.org>
 Uploaders: Martin Chase <stillflame@freegeek.org>, Vagrant Cascadian <vagrant@freegeek.org>, Ryan Niebur <ryan@debian.org>
-Build-Depends: debhelper (>= 7.0.50~), gem2deb (>= 0.3.0~), ruby
+Build-Depends: debhelper (>= 5.0.0), cdbs, ruby1.8, ruby-pkg-tools
 Standards-Version: 3.8.0
 Section: public/libs
-XS-Ruby-Versions: all
 
 Package: libtui-ruby1.8
 Section: libs
