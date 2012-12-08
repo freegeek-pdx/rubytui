@@ -1,0 +1,125 @@
+diff --git a/debian/changelog b/debian/changelog
+index c755c72..3865cec 100644
+--- a/debian/changelog
++++ b/debian/changelog
+@@ -1,11 +1,12 @@
+ libtui-ruby (1.15) freegeek-test; urgency=low
+ 
+-Problem: now words don't wrap to the next line, can we just let the terminal handle it?
+-
+   * cache the distribution so that it's not super slow
+   * add support for detecting macs and faking readline (again)
+   * fix printme to not output invalid characters on 12.04 (Closes:
+     #32291)
++  * fix for newer versions of ruby packaging support
++  * Rename packages to ruby-tui and ruby-tui-doc, also adding
++    transitional packages
+ 
+  -- Ryan Niebur <ryan@debian.org>  Sat, 08 Dec 2012 13:05:16 -0800
+ 
+diff --git a/debian/control b/debian/control
+index fe17a84..db6b41f 100644
+--- a/debian/control
++++ b/debian/control
+@@ -2,33 +2,60 @@ Source: libtui-ruby
+ Priority: optional
+ Maintainer: Freegeek Coders <coders@freegeek.org>
+ Uploaders: Martin Chase <stillflame@freegeek.org>, Vagrant Cascadian <vagrant@freegeek.org>, Ryan Niebur <ryan@debian.org>
+-Build-Depends: debhelper (>= 5.0.0), cdbs, ruby1.8, ruby-pkg-tools
++Build-Depends: debhelper (>= 7.0.50~), gem2deb (>= 0.3.0~), ruby
+ Standards-Version: 3.8.0
+ Section: public/libs
++XS-Ruby-Versions: all
+ 
+-Package: libtui-ruby1.8
+-Section: libs
++Package: ruby-tui
+ Architecture: all
+-Replaces: libtui-ruby
++XB-Ruby-Versions: ${ruby:Versions}
++Depends: ${shlibs:Depends}, ${misc:Depends}, ruby | ruby-interpreter, libreadline-ruby1.8, lsb-release
++Section: libs
++Replaces: libtui-ruby1.8 (<< 1.15~), libtui-ruby (<< 1.15~)
++Breaks: libtui-ruby1.8 (<< 1.15~), libtui-ruby (<< 1.15~)
++Provides: libtui-ruby1.8, libtui-ruby
+ Conflicts: libtui-ruby (<= 1.3)
+-Depends: ${misc:Depends}, libruby1.8, ruby1.8, libreadline-ruby1.8, lsb-release
++Suggests: libtui-ruby-doc
+ Description: command-line interface helper utility for ruby
+  a bunch of functions for dealing with basic command-line interface
+  issues, like coloration and prompting.
+ 
+-Package: libtui-ruby-doc
++Package: ruby-tui-doc
+ Section: doc
+ Architecture: all
+ Depends: ${misc:Depends}, libruby1.8, ruby1.8, libreadline-ruby1.8
++Replaces: libtui-ruby-doc (<< 1.15~)
++Breaks: libtui-ruby-doc (<< 1.15~)
++Provides: libtui-ruby-doc
+ Description: command-line interface helper utility for ruby (documentation)
+  a bunch of functions for dealing with basic command-line interface
+  issues, like coloration and prompting.
+ 
++Package: libtui-ruby1.8
++Section: oldlibs
++Priority: extra
++Architecture: all
++Depends: ${misc:Depends}, ruby-tui
++Description: Transitional package for ruby-tui
++ This is a transitional package to ease upgrades to the ruby-tui
++ package. It can safely be removed.
++
++Package: libtui-ruby-doc
++Section: oldlibs
++Priority: extra
++Architecture: all
++Depends: ${misc:Depends}, ruby-tui-doc
++Description: Transitional package for ruby-tui-doc
++ This is a transitional package to ease upgrades to the ruby-tui-doc
++ package. It can safely be removed.
++
+ Package: libtui-ruby
+-Section: libs
++Section: oldlibs
++Priority: extra
+ Architecture: all
+-Depends: ${misc:Depends}, libtui-ruby1.8 (= ${binary:Version})
+-Suggests: libtui-ruby-doc
+-Description: command-line interface helper utility for ruby (metapackage)
+- a bunch of functions for dealing with basic command-line interface
+- issues, like coloration and prompting.
++Depends: ${misc:Depends}, ruby-tui
++Description: Transitional package for ruby-tui
++ This is a transitional package to ease upgrades to the ruby-tui
++ package. It can safely be removed.
++
+diff --git a/debian/libtui-ruby-doc.rdoc b/debian/libtui-ruby-doc.rdoc
+deleted file mode 100644
+index 3bfc448..0000000
+--- a/debian/libtui-ruby-doc.rdoc
++++ /dev/null
+@@ -1 +0,0 @@
+-lib/rubytui.rb
+diff --git a/debian/ruby-tui-doc.rdoc b/debian/ruby-tui-doc.rdoc
+new file mode 100644
+index 0000000..3bfc448
+--- /dev/null
++++ b/debian/ruby-tui-doc.rdoc
+@@ -0,0 +1 @@
++lib/rubytui.rb
+diff --git a/debian/rules b/debian/rules
+index ba23a9f..bb4ed26 100755
+--- a/debian/rules
++++ b/debian/rules
+@@ -1,8 +1,6 @@
+ #!/usr/bin/make -f
+ 
+-include /usr/share/cdbs/1/rules/debhelper.mk
+-include /usr/share/ruby-pkg-tools/1/class/ruby-common.mk
+-include /usr/share/ruby-pkg-tools/1/class/ruby-setup-rb.mk
++%:
++	dh $@ --buildsystem=ruby --with ruby
+ 
+-DEB_RUBY_SIMPLE_PACKAGES=libtui-ruby
+ 
