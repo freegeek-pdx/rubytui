@@ -4,6 +4,7 @@ libtui-ruby (1.15) freegeek-test; urgency=low
   * add support for detecting macs and faking readline (again)
   * fix printme to not output invalid characters on 12.04 (Closes:
     #32291)
+  * add build dep on graphviz for building the rdoc
 
  -- Ryan Niebur <ryan@debian.org>  Sat, 08 Dec 2012 13:05:16 -0800
 
