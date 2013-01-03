@@ -1,3 +1,10 @@
+libtui-ruby (1.17) UNRELEASED; urgency=low
+
+  * Remove support for readline, to fix line wrapping issues (Closes:
+    32734)
+
+ -- Ryan Niebur <ryan@debian.org>  Wed, 02 Jan 2013 16:44:56 -0800
+
 libtui-ruby (1.16) freegeek-test; urgency=low
 
   * add support for detecting macs and faking readline (again)

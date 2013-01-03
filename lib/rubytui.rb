@@ -18,16 +18,17 @@
 #
 
 # do some setup so we can be usably interactive.
-begin
-require 'readline'
-include Readline
-rescue LoadError
+#begin
+#NOTE: readline breaks support for escaping character codes
+#require 'readline'
+#include Readline
+#rescue LoadError
 #puts "faking readline.."
 def readline(prompt)
 $stderr.print prompt.chomp
 return $stdin.gets.chomp
 end
-end
+#end
 require 'timeout'
 
 # Set this to true for ANSI coloration.
